@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
+{% endblock %}
+
+{% block content %}
+    {{ macros.render_flashed_messages() }}
+    <div class="content">
+        <h1>{{ table_name }}</h1>
+        <!-- 假设后端提供了 columns 作为列名列表和 table_data 作为行数据的列表 -->
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <!-- 动态生成列名 -->
+                    {% for column in columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 动态填充表格数据 -->
+                {% for row in table_data %}
+                <tr>
+                    {% for val in row %}
+                        {% if val is string and 'href' in val %}
+                            <!-- 使用 safe 过滤器来防止转义 -->
+                            <td>{{ val | safe }}</td>
+                        {% else %}
+                            <td>{{ val }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

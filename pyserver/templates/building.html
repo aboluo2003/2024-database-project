@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/building_info.css') }}">
+{% endblock %}
+
+{% block content %}
+    {{ macros.render_flashed_messages() }}
+    <div class="container" style="padding: 20px 5%;max-width: 90%;">
+        <h1>公寓信息</h1>
+        {% for bid, building in buildings_with_rooms.items() %}
+            <div class="building-container">
+                <h2>公寓标号: {{ bid }}</h2>
+                <p>已入住人数: {{ building.info[2] }} / {{ building.info[1] }}</p>
+                <div class="admin-list">
+                    {% for admin in building.admins %}
+                        <div class="admin-item">
+                            <p>管理员: {{ admin.name }}</p>
+                            <p>电话: {{ admin.phone }}</p>
+                            <p>邮箱: {{ admin.email }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="room-grid">
+                    {% for room in building.rooms %}
+                        {% if current_user.is_authenticated and not current_user.is_student() %}
+                            <div class="room-item" onclick="location.href='{{ url_for('room_info', bidrid=bid + '-' + room.RID) }}'">
+                                <p>{{ room.RID }}</p>
+                                <p>{{ room.occupancy }}/{{ room.capacity }}</p>
+                            </div>
+                        {% else %}
+                            <div class="room-item">
+                                <p>{{ room.RID }}</p>
+                                <p>{{ room.occupancy }}/{{ room.capacity }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

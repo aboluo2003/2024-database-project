@@ -1,0 +1,7 @@
+
+{% extends 'form_template.html' %}
+{% import 'macros.html' as macros %}
+
+{% block before_form %}
+    <a href="{{ url_for('register') }}" class="btn btn-secondary">重新选择账号类型</a>
+{% endblock %}

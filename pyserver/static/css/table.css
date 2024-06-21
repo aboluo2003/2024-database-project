@@ -1,0 +1,65 @@
+/* css/table.css */
+.content {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* 动态生成列名 */
+.table thead th {
+  {% for column in columns %}
+    {% if forloop.first %}
+      {% if column == "href" %}
+        background-color: #f2f2f2;
+      {% else %}
+        background-color: #e7e7e7;
+      {% endif %}
+    {% else %}
+      {% if column == "href" %}
+        background-color: #e7e7e7;
+      {% else %}
+        background-color: #f2f2f2;
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+}
+
+/* 动态填充表格数据 */
+.table tbody td {
+  {% for column in columns %}
+    {% if column == "href" %}
+      {% if forloop.first %}
+        background-color: #f2f2f2;
+      {% else %}
+        background-color: #e7e7e7;
+      {% endif %}
+    {% else %}
+      {% if forloop.first %}
+        background-color: #f2f2f2;
+      {% else %}
+        background-color: #fff;
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+}

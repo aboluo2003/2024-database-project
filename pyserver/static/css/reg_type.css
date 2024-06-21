@@ -1,0 +1,38 @@
+/* css/login.css 中的新增 CSS 样式 */
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  /* background-color: #f9f9f9; */
+  border-radius: 10px;
+}
+
+.reg-form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reg-form input[type="radio"] {
+  margin-right: 10px;
+}
+
+.reg-form-submit {
+  width: 100%;
+  text-align: center;
+}
+
+.reg-form input[type="submit"] {
+  width: 40%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.reg-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}

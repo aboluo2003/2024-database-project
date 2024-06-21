@@ -1,0 +1,53 @@
+/* css/building_info.css */
+.container {
+  padding: 20px 5%;
+  max-width: 90%;
+  background-color: #f9f9f9; /* 添加背景色 */
+  border-radius: 5px; /* 添加边框圆角 */
+}
+
+.building-container {
+  margin-bottom: 20px; /* 添加底部边距 */
+  background-color: #fff; /* 添加背景色 */
+  padding: 20px; /* 添加内边距 */
+  border-radius: 5px; /* 添加边框圆角 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.admin-list {
+  display: grid;
+  flex-wrap: wrap;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.admin-item {
+  flex: 1; /* 设置管理员项的弹性宽度 */
+  max-width: 400px;
+  margin-right: 10px; /* 添加边距 */
+  margin-bottom: 20px;
+  background-color: #f5f5f5; /* 添加背景色 */
+  padding: 10px; /* 添加内边距 */
+  border-radius: 5px; /* 添加边框圆角 */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px; /* 添加间隙 */
+}
+
+.room-item {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+  background-color: #f5f5f5; /* 添加背景色 */
+  border-radius: 5px; /* 添加边框圆角 */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.room-item:hover {
+  background-color: #e0e0e0; /* 添加悬停背景色 */
+}

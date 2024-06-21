@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block content %}
+    {{ macros.render_flashed_messages() }}
+    <div class="content">
+        <form method="post">
+            <div id="checkin-form">
+                {{ form.hidden_tag() }}
+                <label for="BID">宿舍楼编号:</label>
+                {{ form.BID(class="form-control") }}
+                <br />
+
+                <label for="RID">房间编号:</label>
+                {{ form.RID(class="form-control") }}
+                <br />
+
+                <label for="SID">学号:</label>
+                {{ form.SID(class="form-control") }}
+                <br />
+
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

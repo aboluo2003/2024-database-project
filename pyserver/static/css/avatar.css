@@ -1,0 +1,43 @@
+/* styles.css */
+/* ... 其他已有的 CSS 代码 ... */
+
+.avatar-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* 添加底部边距 */
+}
+
+.avatar-upload input[type="file"] {
+  display: none; /* 隐藏文件输入框 */
+}
+
+.avatar-upload label {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.avatar-upload label:hover {
+  background-color: #0056b3;
+}
+
+.avatar-form {
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.avatar-form input[type="submit"] {
+  position: relative;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+}

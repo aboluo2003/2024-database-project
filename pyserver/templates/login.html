@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+    {{ macros.render_flashed_messages() }}
+    <div class="login-container">
+        <h2 class="login-title">学生公寓管理系统</h2>
+        <!-- 登录表单 -->
+        <form method="post">
+            <div class="login-form">
+                <div class="login-form-user">
+                    用户名 <br />
+                    <input type="text" name="username">
+                </div>
+                <div class="login-form-pass">
+                    密码 <br />
+                    <input type="password" name="password">
+                </div>
+                <br />
+                <input type="submit" value="登录">
+            </div>
+        </form>
+    </div>
+{% endblock %}

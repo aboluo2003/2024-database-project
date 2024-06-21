@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}学生公寓管理系统{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+    {% block styles %}
+    {% endblock %}
+    <!-- 引入 CSS 样式或其他资源 -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">首页</a></li>
+                <!-- 用户名和登出链接，可以根据用户是否登录来显示 -->
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('profile') }}">{{ current_user.username }}</a></li>
+                    <li><a href="{{ url_for('logout') }}">登出</a></li>
+                {% else %}
+                    <!-- 如果用户未登录，可以显示登录链接 -->
+                    <li><a href="{{ url_for('login') }}">登录</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <aside>
+            <ul>
+                <!-- 侧边栏的 apps 链接列表 -->
+                {% for app_name, app_link in apps %}
+                    <li><a href="{{ app_link }}">{{ app_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <main>
+            <!-- 内容区域的占位符，子模板可以填充内容 -->
+            {% block content %}
+                <div class="content">
+                    <!-- 默认内容可以在这里定义，或者留空 -->
+                </div>
+            {% endblock %}
+        </main>
+    </div>
+
+    <footer>
+        <!-- 页脚内容 -->
+    </footer>
+</body>
+</html>

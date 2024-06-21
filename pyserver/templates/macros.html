@@ -1,0 +1,15 @@
+{% macro render_flashed_messages() %}
+  <div class="">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="container" style="background-color: {{ 'rgba(0, 255, 0, 0.1)' if '成功' in messages or '已' in messages else 'rgba(255, 0, 0, 0.1)' }};">
+          <ul class="flash-list">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+{% endmacro %}

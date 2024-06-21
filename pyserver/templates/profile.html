@@ -1,0 +1,53 @@
+{% extends 'form_template.html' %}
+
+{% block styles %}
+  {{ super() }}
+  <!-- 在 base.html 或 profile.html 中 -->
+  <style>
+    .avatar-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 16px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+      opacity: 0;
+      z-index: 100;
+    }
+    
+    .avatar-text:hover {
+      opacity: 1;
+    }
+
+    .avatar-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .avatar img:hover ~ .avatar-text {
+      opacity: 1;
+    }
+    .avatar-text:hover ~ .avatar img {
+      opacity: 0.8;
+    }
+  </style>
+{% endblock %}
+
+{% block before_form %}
+  <div class="avatar">
+    <a href="/profile/avatar?back={{ request.full_path }}">
+      {% if current_user.avatar_path %}
+        <img src="{{ '/static/' + current_user.avatar_path }}" alt="用户头像" />
+      {% else %}
+        <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="用户头像" />
+      {% endif %}
+      <span class="avatar-text">修改头像</span>
+    </a>
+  </div>
+{% endblock %}

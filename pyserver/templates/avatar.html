@@ -1,0 +1,35 @@
+{% extends 'form_template.html' %}
+{% import 'macros.html' as macros %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/avatar.css') }}">
+{% endblock %}
+
+{% block content %}
+  {{ macros.render_flashed_messages() }}
+  <div class="content">
+    <h2>更新您的头像</h2>
+    <a href="{{ request.args.get('back', '/profile') }}">返回个人信息</a>
+    <div class="avatar">
+      {% if current_user.avatar_path %}
+        <img src="{{ '/static/' + current_user.avatar_path }}" alt="用户头像" />
+      {% else %}
+        <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="用户头像" />
+      {% endif %}
+    </div>
+    <div class="avatar-form">
+      <form action="{{ url_for('upload_avatar') }}" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.avatar.label }} {{ form.avatar }}
+        {% for error in form.avatar.errors %}
+          <br />
+          <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+        <div class="avatar-submit">
+          {{ form.submit }}
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

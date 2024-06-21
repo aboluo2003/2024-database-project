@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+{% endblock %}
+
+{% block content %}
+  {{ macros.render_flashed_messages() }}
+  <div class="content">
+    <h1>{{ form_title }}</h1>
+    {% block before_form %}{% endblock %}
+    <!-- 表单 -->
+    <form method="post">
+      {{ form.hidden_tag() }}
+      {% for field in form %}
+        {% if field.name != 'csrf_token' and field.name != 'submit' %}
+          <div class="form-group">
+            {{ field.label }}{{ field() }}
+          </div>
+        {% endif %}
+      {% endfor %}
+      <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </form>
+  </div>
+{% endblock %}
